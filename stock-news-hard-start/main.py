@@ -41,7 +41,7 @@ else:
 # When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
 #HINT 1: Get the closing price for yesterday and the day before yesterday. Find the positive difference between the two prices. e.g. 40 - 20 = -20, but the positive difference is 20.
 #HINT 2: Work out the value of 5% of yerstday's closing stock price. 
-response_1 = requests.get(url=STOCK_ENDPOINT, params=Trade_param)
+response_1 = requests.get(url=STOCK_ENDPOINT, params=Trade_param, timeout=60)
 response_1.raise_for_status()
 data = response_1.json()
 
@@ -54,7 +54,7 @@ day_two_closing = float(day_two['4. close'])
 diff = day_one_closing - day_two_closing
 diff_percent = round((diff/day_one_closing)*100)
 
-response_2 = requests.get(url=NEWS_ENDPOINT,params=News_param)
+response_2 = requests.get(url=NEWS_ENDPOINT,params=News_param, timeout=60)
 response_2.raise_for_status()
 news_data = response_2.json()
 
